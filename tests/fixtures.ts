@@ -1,0 +1,31 @@
+// The 20 September phone transcripts as extracted fields, with the tier the rules must give.
+export const R = {
+  served_areas: ["kothrud","baner","aundh","wakad","koregaon","kalyani","viman","hadapsar","magarpatta","nibm","kondhwa","undri","pimple","kharadi","nanded","chinchwad","hinjewadi"],
+  not_served_areas: ["talegaon","lonavala","nashik","mumbai"],
+  excluded_project_types: ["restaurant","cafe","hotel","retail","shop","store","gym","fitness","hospitality","salon"],
+  min_weeks_to_completion: 6, commercial_sqft: { min: 500, max: 3000 },
+  budget_floor: { min_total_inr: 350000, min_inr_per_sqft: 1200 },
+  p1_start_window_weeks: 13, min_confidence: 0.7, referral_boost: true,
+  pricing_line: "Pricing depends on the site, the materials you choose, and the scope.",
+};
+export const SEPT: Array<[string, any, string, string?]> = [
+  ["T01", { location: "Kothrud", project_kind: "residential", scope_summary: "kitchen, living, 2 bedrooms", scope_size: "full_home", carpet_sqft: 1400, weeks_until_deadline: 24, decision_maker_available: true, referral_is_personal: true }, "P1"],
+  ["T02", { location: "Wakad", project_kind: "residential", scope_summary: "full redesign", scope_size: "full_home", carpet_sqft: 950, weeks_until_deadline: 10, start_within_weeks: 4, decision_maker_available: true, pricing_asked_count: 2 }, "P1"],
+  ["T03", { location: "Nashik", project_kind: "residential", scope_summary: "home office and study", scope_size: "multi_room" }, "P3", "not_serviceable"],
+  ["T04", { location: "Pune", project_kind: "residential", scope_summary: "colour and furniture ideas", advice_only: true }, "P3", "advice_only"],
+  ["T05", { location: "Koregaon Park", project_kind: "residential", scope_summary: "complete redesign", scope_size: "full_home", carpet_sqft: 2400, weeks_until_deadline: 21, decision_maker_available: true, referral_is_personal: true }, "P1"],
+  ["T06", { location: "Baner", project_kind: "commercial", scope_summary: "office fitout for 20", scope_size: "office", carpet_sqft: 800, weeks_until_deadline: 13, decision_maker_available: true }, "P1"],
+  ["T07", { location: "Pune", project_kind: "residential", scope_summary: "living room and kitchen", scope_size: "multi_room", weeks_until_deadline: 3 }, "P3", "timeline_too_short"],
+  ["T09", { location: "Viman Nagar", project_kind: "existing_client", complaint: true }, "SERVICE"],
+  ["T10", { location: "Kharadi", project_kind: "residential", scope_summary: "kitchen and one bedroom", scope_size: "multi_room", carpet_sqft: 550, budget_lakh: 1.5, decision_maker_available: true }, "P2", "designer_review"],
+  ["T11", { location: "Baner", project_kind: "residential", scope_summary: "living, bedroom, kitchen", scope_size: "multi_room", tenant: true, decision_maker_available: true }, "P2", "designer_review"],
+  ["T12", { location: "Kalyani Nagar", project_kind: "residential", scope_summary: "full villa", scope_size: "full_home", carpet_sqft: 5500, weeks_until_deadline: 26, decision_maker_available: true }, "P1"],
+  ["T13", { location: "Aundh", project_kind: "residential", scope_summary: "kitchen, wardrobes, living", scope_size: "multi_room", carpet_sqft: 1100, decision_maker_available: true, pricing_asked_count: 1 }, "P1"],
+  ["T14", { location: "Hadapsar", project_kind: "residential", scope_summary: "full home", scope_size: "full_home", decision_maker: "parents, both attending", decision_maker_available: true }, "P1"],
+  ["T15", { location: "Undri", project_kind: "residential", scope_summary: "full home", scope_size: "full_home", carpet_sqft: 875, start_within_weeks: 0, decision_maker_available: true }, "P1"],
+  ["T16", { location: "Viman Nagar", project_kind: "residential", scope_summary: "interiors", scope_size: "unknown", decision_maker_available: true }, "P2", "designer_review"],
+  ["T17", { location: "Pimple Saudagar", project_kind: "residential", scope_summary: "kitchen, wardrobes, living", scope_size: "multi_room", carpet_sqft: 1050, weeks_until_deadline: 25, decision_maker_available: true }, "P1"],
+  ["T18", { location: "Pune", project_kind: "commercial", scope_summary: "coworking pod", scope_size: "office", carpet_sqft: 180 }, "P3", "not_serviceable"],
+  ["T19", { location: "Koregaon Park", project_kind: "excluded", property_type: "restaurant", scope_summary: "restaurant interiors" }, "P3", "not_serviceable"],
+  ["T20", { location: "Magarpatta", project_kind: "residential", scope_summary: "kitchen, bedrooms, living", scope_size: "full_home", carpet_sqft: 900, weeks_until_deadline: 20, decision_maker_available: true }, "P1"],
+];

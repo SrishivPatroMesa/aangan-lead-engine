@@ -1,0 +1,167 @@
+{
+  "end_of_call_webhook": "https://jrzwheloknetdvvzshhj.supabase.co/functions/v1/lead-engine/vaani/webhook?secret=<WEBHOOK_SECRET>",
+  "tools": [
+    {
+      "name": "lookup_caller",
+      "description": "Check whether the caller already exists in the CRM. Call once at the start.",
+      "method": "POST",
+      "url": "https://jrzwheloknetdvvzshhj.supabase.co/functions/v1/lead-engine/tools/lookup-caller?secret=<WEBHOOK_SECRET>",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "Caller's phone number"
+          }
+        },
+        "required": [
+          "phone"
+        ]
+      }
+    },
+    {
+      "name": "check_rules",
+      "description": "Check what you've heard against the studio's fixed rules. Returns the provisional tier and exactly what to do next.",
+      "method": "POST",
+      "url": "https://jrzwheloknetdvvzshhj.supabase.co/functions/v1/lead-engine/tools/check-rules?secret=<WEBHOOK_SECRET>",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string"
+          },
+          "project_kind": {
+            "type": "string",
+            "enum": [
+              "residential",
+              "commercial",
+              "excluded",
+              "existing_client",
+              "unknown"
+            ]
+          },
+          "property_type": {
+            "type": "string"
+          },
+          "carpet_sqft": {
+            "type": "number"
+          },
+          "scope_summary": {
+            "type": "string"
+          },
+          "scope_size": {
+            "type": "string",
+            "enum": [
+              "full_home",
+              "floor",
+              "multi_room",
+              "single_room",
+              "office",
+              "unknown"
+            ]
+          },
+          "weeks_until_deadline": {
+            "type": "number"
+          },
+          "deadline_text": {
+            "type": "string"
+          },
+          "start_within_weeks": {
+            "type": "number"
+          },
+          "advice_only": {
+            "type": "boolean"
+          },
+          "just_exploring": {
+            "type": "boolean"
+          },
+          "decision_maker_available": {
+            "type": "boolean"
+          },
+          "tenant": {
+            "type": "boolean"
+          },
+          "referral_is_personal": {
+            "type": "boolean"
+          },
+          "budget_lakh": {
+            "type": "number"
+          },
+          "complaint": {
+            "type": "boolean"
+          },
+          "wants_human": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "location",
+          "project_kind"
+        ]
+      }
+    },
+    {
+      "name": "available_slots",
+      "description": "Get real free consultation times for the right designer. Only for P1.",
+      "method": "POST",
+      "url": "https://jrzwheloknetdvvzshhj.supabase.co/functions/v1/lead-engine/tools/available-slots?secret=<WEBHOOK_SECRET>",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "call_id": {
+            "type": "string"
+          },
+          "preferred_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD if the caller asked for a day"
+          }
+        },
+        "required": [
+          "location"
+        ]
+      }
+    },
+    {
+      "name": "book_consultation",
+      "description": "Book the chosen time in the designer's calendar. Only say booked after this confirms.",
+      "method": "POST",
+      "url": "https://jrzwheloknetdvvzshhj.supabase.co/functions/v1/lead-engine/tools/book-consultation?secret=<WEBHOOK_SECRET>",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "call_id": {
+            "type": "string"
+          },
+          "start_time": {
+            "type": "string",
+            "description": "Exact start_time from available_slots"
+          },
+          "designer_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "start_time",
+          "designer_id"
+        ]
+      }
+    }
+  ]
+}
